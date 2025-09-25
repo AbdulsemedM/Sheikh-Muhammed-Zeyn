@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sheikh_muhammed_zeyn/features/book/presentation/screens/book_screen.dart';
-import 'package:sheikh_muhammed_zeyn/features/home/presentation/screens/home_screen.dart';
-import 'package:sheikh_muhammed_zeyn/features/sheikh_intro/presentation/screens/sheikh_intro_screen.dart';
+import 'package:sheikh_muhammed_zeyn/features/audio/presentation/screens/audio_screen.dart';
 
 // Import app theme
 import 'common/theme/theme.dart';
@@ -13,7 +11,6 @@ import 'common/theme/theme.dart';
 // import 'features/home/presentation/home_screen.dart';
 // import 'features/auth/presentation/login_screen.dart';
 // import 'features/profile/presentation/profile_screen.dart';
-import 'features/app_intro/app_intro.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,7 +47,7 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/intro',
-      builder: (context, state) => const BookScreen(),
+      builder: (context, state) => const AudioScreen(),
     ),
     // GoRoute(
     //   path: '/',
