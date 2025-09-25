@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:sheikh_muhammed_zeyn/features/audio/presentation/screens/audio_screen.dart';
 
 // Import app theme
 import 'common/theme/theme.dart';
+import 'features/video/presentation/screens/video_screen.dart';
 
 // Import features
 // import 'features/home/presentation/home_screen.dart';
@@ -47,7 +47,7 @@ final _router = GoRouter(
   routes: [
     GoRoute(
       path: '/intro',
-      builder: (context, state) => const AudioScreen(),
+      builder: (context, state) => const VideoScreen(),
     ),
     // GoRoute(
     //   path: '/',

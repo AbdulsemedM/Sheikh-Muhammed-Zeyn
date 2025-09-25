@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../common/utils/image_utils.dart';
 
-class AudioContent2 extends StatelessWidget {
-  const AudioContent2({super.key});
+class VideoContent2 extends StatelessWidget {
+  const VideoContent2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class AudioContent2 extends StatelessWidget {
               right: 0,
               // height: size.height * 0.6, // 50% of screen height for background
               child: SvgPicture.asset(
-                'assets/icons/book_background.svg',
+                'assets/icons/video_background.svg',
                 width: size.width * 1,
                 fit: BoxFit.cover,
                 alignment: Alignment.bottomCenter,
@@ -50,7 +50,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.9,
                     child: SvgPicture.asset(
-                      'assets/icons/audio_app_bar.svg',
+                      'assets/icons/video_app_bar.svg',
                       width: size.width * 1,
                       fit: BoxFit.cover,
                       alignment: Alignment.bottomCenter,
@@ -64,7 +64,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.4,
                     child: SvgPicture.asset(
-                      'assets/icons/audio_app_icon.svg',
+                      'assets/icons/book_app_icon.svg',
                       width: size.width * 0.3,
                       fit: BoxFit.contain,
                     ),
@@ -76,7 +76,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.5,
                     child: SvgPicture.asset(
-                      'assets/icons/Audio_title.svg',
+                      'assets/icons/Video_title.svg',
                       width: size.width * 0.3,
                       fit: BoxFit.contain,
                     ),
@@ -88,7 +88,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.2,
                     child: SvgPicture.asset(
-                      'assets/icons/audio_icon.svg',
+                      'assets/icons/video_icon.svg',
                       width: size.width * 0.3,
                       fit: BoxFit.contain,
                     ),
@@ -118,7 +118,7 @@ class AudioContent2 extends StatelessWidget {
                     0.00172, // Responsive scaling based on screen height
                 alignment: Alignment.bottomCenter,
                 child: SvgPicture.asset(
-                  'assets/icons/audio_tab_bar.svg',
+                  'assets/icons/video_tab_bar.svg',
                   width: size.width,
                   fit: BoxFit.cover,
                   alignment: Alignment.bottomCenter,
@@ -149,7 +149,7 @@ class AudioContent2 extends StatelessWidget {
                 child: Transform.scale(
                   scale: 1, // Slightly larger scale for better visibility
                   child: SvgPicture.asset(
-                    'assets/icons/Audio Categories.svg',
+                    'assets/icons/Video Categories.svg',
                   ),
                 ),
               ),
@@ -163,7 +163,7 @@ class AudioContent2 extends StatelessWidget {
                 child: Transform.scale(
                   scale: 1, // Slightly larger scale for better visibility
                   child: SvgPicture.asset(
-                    'assets/icons/Line 2 (1).svg',
+                    'assets/icons/Line 2.svg',
                   ),
                 ),
               ),
@@ -177,7 +177,7 @@ class AudioContent2 extends StatelessWidget {
                 child: Transform.scale(
                   scale: 1, // Slightly larger scale for better visibility
                   child: SvgPicture.asset(
-                    'assets/icons/1-2.svg',
+                    'assets/icons/1-2(green).svg',
                   ),
                 ),
               ),
@@ -195,7 +195,7 @@ class AudioContent2 extends StatelessWidget {
                           details.localPosition, constraints, context);
                     },
                     child: Image.asset(
-                      'assets/images/${getImageDirectory(context)}/category_2(green).png',
+                      'assets/images/${getImageDirectory(context)}/category_2(light).png',
                       fit: BoxFit
                           .contain, // Changed from BoxFit.none to BoxFit.contain
                       width: constraints.maxWidth,

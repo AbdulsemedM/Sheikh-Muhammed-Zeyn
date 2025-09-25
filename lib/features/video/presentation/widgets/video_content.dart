@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../common/utils/image_utils.dart';
+import '../screens/video_screen2.dart';
 
-class AudioContent2 extends StatelessWidget {
-  const AudioContent2({super.key});
+class VideoContent extends StatelessWidget {
+  const VideoContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class AudioContent2 extends StatelessWidget {
               right: 0,
               // height: size.height * 0.6, // 50% of screen height for background
               child: SvgPicture.asset(
-                'assets/icons/book_background.svg',
+                'assets/icons/video_background.svg',
                 width: size.width * 1,
                 fit: BoxFit.cover,
                 alignment: Alignment.bottomCenter,
@@ -50,7 +51,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.9,
                     child: SvgPicture.asset(
-                      'assets/icons/audio_app_bar.svg',
+                      'assets/icons/video_app_bar.svg',
                       width: size.width * 1,
                       fit: BoxFit.cover,
                       alignment: Alignment.bottomCenter,
@@ -64,7 +65,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.4,
                     child: SvgPicture.asset(
-                      'assets/icons/audio_app_icon.svg',
+                      'assets/icons/book_app_icon.svg',
                       width: size.width * 0.3,
                       fit: BoxFit.contain,
                     ),
@@ -76,7 +77,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.5,
                     child: SvgPicture.asset(
-                      'assets/icons/Audio_title.svg',
+                      'assets/icons/Video_title.svg',
                       width: size.width * 0.3,
                       fit: BoxFit.contain,
                     ),
@@ -88,7 +89,7 @@ class AudioContent2 extends StatelessWidget {
                   child: Transform.scale(
                     scale: 0.2,
                     child: SvgPicture.asset(
-                      'assets/icons/audio_icon.svg',
+                      'assets/icons/video_icon.svg',
                       width: size.width * 0.3,
                       fit: BoxFit.contain,
                     ),
@@ -118,7 +119,7 @@ class AudioContent2 extends StatelessWidget {
                     0.00172, // Responsive scaling based on screen height
                 alignment: Alignment.bottomCenter,
                 child: SvgPicture.asset(
-                  'assets/icons/audio_tab_bar.svg',
+                  'assets/icons/video_tab_bar.svg',
                   width: size.width,
                   fit: BoxFit.cover,
                   alignment: Alignment.bottomCenter,
@@ -149,7 +150,7 @@ class AudioContent2 extends StatelessWidget {
                 child: Transform.scale(
                   scale: 1, // Slightly larger scale for better visibility
                   child: SvgPicture.asset(
-                    'assets/icons/Audio Categories.svg',
+                    'assets/icons/Video Categories.svg',
                   ),
                 ),
               ),
@@ -163,7 +164,7 @@ class AudioContent2 extends StatelessWidget {
                 child: Transform.scale(
                   scale: 1, // Slightly larger scale for better visibility
                   child: SvgPicture.asset(
-                    'assets/icons/Line 2 (1).svg',
+                    'assets/icons/Line 2.svg',
                   ),
                 ),
               ),
@@ -177,7 +178,7 @@ class AudioContent2 extends StatelessWidget {
                 child: Transform.scale(
                   scale: 1, // Slightly larger scale for better visibility
                   child: SvgPicture.asset(
-                    'assets/icons/1-2.svg',
+                    'assets/icons/1-2(green).svg',
                   ),
                 ),
               ),
@@ -195,7 +196,7 @@ class AudioContent2 extends StatelessWidget {
                           details.localPosition, constraints, context);
                     },
                     child: Image.asset(
-                      'assets/images/${getImageDirectory(context)}/category_2(green).png',
+                      'assets/images/${getImageDirectory(context)}/category_1(green).png',
                       fit: BoxFit
                           .contain, // Changed from BoxFit.none to BoxFit.contain
                       width: constraints.maxWidth,
@@ -214,11 +215,15 @@ class AudioContent2 extends StatelessWidget {
                 scale: 0.3,
                 child: GestureDetector(
                   onTap: () {
-                    // Navigate to the previous screen
-                    Navigator.pop(context);
+                    // Navigate to the next screen
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const VideoScreen2()),
+                    );
                   },
                   child: SvgPicture.asset(
-                    'assets/icons/back_button.svg',
+                    'assets/icons/book_next.svg',
                     width: size.width,
                     fit: BoxFit.cover,
                     alignment: Alignment.bottomCenter,
@@ -242,7 +247,7 @@ class AudioContent2 extends StatelessWidget {
     // and is scaled to fit within the container. We need to calculate the actual
     // image display area within the container.
 
-    // Assume the category image is roughly square
+    // Assume the category image is roughly square (3x3 grid)
     // Calculate the actual image display area based on BoxFit.contain behavior
     double imageAspectRatio = 1.0; // Assuming square image
     double containerAspectRatio = containerWidth / containerHeight;
@@ -277,11 +282,23 @@ class AudioContent2 extends StatelessWidget {
       return; // Tap is outside the actual image area
     }
 
-    // Calculate column boundaries (equal thirds for top and middle rows)
-    double columnWidth = imageDisplayWidth / 3;
+    // Calculate column boundaries (left: 30%, middle: 40%, right: 30%)
+    double leftColumnWidth = imageDisplayWidth * 0.3;
+    double middleColumnWidth = imageDisplayWidth * 0.4;
+    double rightColumnStart = leftColumnWidth + middleColumnWidth;
 
     // Calculate row boundaries (each row is 1/3 of the height)
     double rowHeight = imageDisplayHeight / 3;
+
+    // Determine which column was tapped
+    int column;
+    if (adjustedX < leftColumnWidth) {
+      column = 1; // Left column
+    } else if (adjustedX < rightColumnStart) {
+      column = 2; // Middle column
+    } else {
+      column = 3; // Right column
+    }
 
     // Determine which row was tapped
     int row;
@@ -291,30 +308,6 @@ class AudioContent2 extends StatelessWidget {
       row = 2; // Middle row
     } else {
       row = 3; // Bottom row
-    }
-
-    // Determine which column was tapped based on row
-    int column = 0;
-
-    if (row == 1 || row == 2) {
-      // Top and middle rows have 3 equal columns
-      if (adjustedX < columnWidth) {
-        column = 1; // Left column
-      } else if (adjustedX < columnWidth * 2) {
-        column = 2; // Middle column
-      } else {
-        column = 3; // Right column
-      }
-    } else if (row == 3) {
-      // Bottom row only has content in the middle area
-      // Check if tap is in the center third (middle column area)
-      if (adjustedX >= columnWidth && adjustedX < columnWidth * 2) {
-        column = 2; // Only middle column has content in bottom row
-      } else {
-        // Tap is in empty area (left or right side of bottom row)
-        print('Tap in empty area of bottom row');
-        return; // Ignore taps in empty areas
-      }
     }
 
     // Debug print to help troubleshoot
@@ -331,7 +324,7 @@ class AudioContent2 extends StatelessWidget {
     print(
         'Row boundaries: 0-${rowHeight.toStringAsFixed(1)}, ${rowHeight.toStringAsFixed(1)}-${(rowHeight * 2).toStringAsFixed(1)}, ${(rowHeight * 2).toStringAsFixed(1)}-${imageDisplayHeight.toStringAsFixed(1)}');
     print(
-        'Column boundaries: 0-${columnWidth.toStringAsFixed(1)}, ${columnWidth.toStringAsFixed(1)}-${(columnWidth * 2).toStringAsFixed(1)}, ${(columnWidth * 2).toStringAsFixed(1)}-${imageDisplayWidth.toStringAsFixed(1)}');
+        'Column boundaries: 0-${leftColumnWidth.toStringAsFixed(1)}, ${leftColumnWidth.toStringAsFixed(1)}-${rightColumnStart.toStringAsFixed(1)}, ${rightColumnStart.toStringAsFixed(1)}-${imageDisplayWidth.toStringAsFixed(1)}');
     print('Detected: Row $row, Column $column');
 
     // Navigate based on row and column
@@ -341,31 +334,25 @@ class AudioContent2 extends StatelessWidget {
   void _navigateToCategory(BuildContext context, int row, int column) {
     String categoryName = '';
 
-    // Map row and column to category names based on the actual image layout
-    // Top row (row 1): 3 categories
+    // Map row and column to category names
     if (row == 1 && column == 1) {
-      categoryName = 'KHUTBA';
+      categoryName = 'Quran Tefsir';
     } else if (row == 1 && column == 2) {
-      categoryName = 'SHURA FIL ISLAM';
+      categoryName = 'Wed Mikrosh Lesetoch';
     } else if (row == 1 && column == 3) {
-      categoryName = 'BAYINAT';
-    }
-    // Middle row (row 2): 3 categories
-    else if (row == 2 && column == 1) {
-      categoryName = 'SEWAID ALIKHAE';
+      categoryName = 'Hadith';
+    } else if (row == 2 && column == 1) {
+      categoryName = 'Fetawa';
     } else if (row == 2 && column == 2) {
-      categoryName = 'KITABU TEWHID';
+      categoryName = 'Tefsir Ushrul Akhir';
     } else if (row == 2 && column == 3) {
-      categoryName = 'NEYLUL AWTAR';
-    }
-    // Bottom row (row 3): only 1 category in the center
-    else if (row == 3 && column == 2) {
-      categoryName = 'ANTEKO ALLAH NEH';
-    }
-    // If no valid category is found, return without navigation
-    else {
-      print('No category found for Row $row, Column $column');
-      return;
+      categoryName = 'Ahkam Aluduhiya';
+    } else if (row == 3 && column == 1) {
+      categoryName = 'Hajj';
+    } else if (row == 3 && column == 2) {
+      categoryName = 'Muhadera';
+    } else if (row == 3 && column == 3) {
+      categoryName = 'Sira';
     }
 
     // Navigate to the category screen
